@@ -13,7 +13,7 @@
 
 <body>
     <!-- Start: Navbar Centered Links -->
-    <nav class="navbar navbar-expand-md sticky-top navbar-shrink py-3" id="mainNav">
+    <nav class="navbar navbar-expand-md sticky-top navbar-shrink py-3" id="mainNav" aria-label="Main navigation">
         <div class="container"><img src="assets/img/ICONE.png" width="41" height="41"><a class="navbar-brand d-flex align-items-center" href="/"><span>Verde em Casa</span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav mx-auto">
@@ -26,20 +26,22 @@
             </div>
         </div>
     </nav><!-- End: Navbar Centered Links -->
-    <section class="py-5">
-        <!-- Start: Projects Grid -->
-        <div class="container py-5">
-            <div class="row mb-5">
-                <div class="col-md-8 col-xl-6 text-center mx-auto" style="width: 664.984px;">
-                    <h2 class="fw-bold">Eventos</h2>
-                    <p class="text-muted">Fique por dentro dos mais recentes eventos, oficinas e encontros para entusiastas de plantas! Seja você um jardineiro iniciante ou um amante de plantas experiente, nossos eventos são a oportunidade perfeita para aprender novas técnicas, trocar experiências e conhecer outros apaixonados por jardinagem.</p>
-                </div>
+
+    <section class="py-5" aria-labelledby="eventos-heading"></section>
+            
+    <!-- Start: Projects Grid -->
+    <div class="container py-5">
+        <div class="row mb-5">
+            <div class="col-md-8 col-xl-6 text-center mx-auto" style="width: 664.984px;">
+                <h2 class="fw-bold" id="eventos-heading">Eventos</h2>
+                <p class="text-muted">Fique por dentro dos mais recentes eventos, oficinas e encontros para entusiastas de plantas! Seja você um jardineiro iniciante ou um amante de plantas experiente, nossos eventos são a oportunidade perfeita para aprender novas técnicas, trocar experiências e conhecer outros apaixonados por jardinagem.</p>
             </div>
-            <div class="row row-cols-1 row-cols-md-2 mx-auto" style="max-width: 900px;">
-                <div class="col mb-4">
-                    <div><a href="#"><img class="rounded img-fluid shadow w-100 fit-cover" src="assets/img/wedding-1854074_1920.jpg" style="height: 250px;"></a>
-                        <div class="py-4">
-                            <h4 class="fw-bold">Fique por dentro</h4>
+        </div>
+        <div class="row row-cols-1 row-cols-md-2 mx-auto" style="max-width: 900px;">
+            <div class="col mb-4">
+                <div>
+                    <a href="#"><img class="rounded img-fluid shadow w-100 fit-cover" src="assets/img/wedding-1854074_1920.jpg" style="height: 250px;" alt="Evento de casamento"></a>
+                    <div class="py-4">
                             <p class="text-muted">Explore nossa agenda, inscreva-se nos próximos eventos e faça parte da nossa vibrante comunidade verde. Vamos cultivar juntos um mundo mais verde e sustentável!</p>
                         </div>
                     </div>
@@ -70,7 +72,9 @@
                 </div>
             </div>
         </div><!-- End: Projects Grid -->
-    </section><!-- Start: Footer Multi Column -->
+    </section>
+
+    <!-- Start: Footer Multi Column -->
     <footer class="bg-primary-gradient">
         <div class="container py-4 py-lg-5">
             <div class="row justify-content-center">
