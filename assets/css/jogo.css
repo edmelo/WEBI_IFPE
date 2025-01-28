@@ -1,0 +1,29 @@
+.card {
+    width: 150px;
+    height: 150px;
+    margin: 10px;
+    cursor: pointer;
+    position: relative;
+}
+.card img {
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+.card p {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    margin: 0;
+    display: none;
+}
+.flipped img, .flipped p {
+    display: block;
+}
+.matched img, .matched p {
+    display: block;
+}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo</title>
+    
+    <link rel="stylesheet" href="assets/css/jogo.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+</head>
+<body>
+    <div class="container mt-3">
+        <a class="btn btn-secondary" href="index.html">Voltar para Home</a>
+    </div>
+    
+    <div class="container">
+        <h1 class="fw-bold" style="text-align: center;"><strong>Jogo da Memória</strong></h1>
+        <div class="row justify-content-center" id="game-board">
+            <!-- gera os card vazios -->
+        </div>
+        <div class="text-center my-4" id="congrats-message" style="display: none;">
+            <h2>Parabéns! Você completou o jogo!</h2>
+        </div>
+    </div>
+
+    <!-- Cria um array com as imagens -->
+    <script>
+        const images = [
+            { src: 'assets/img/jogo/plant1.jpg', name: 'Dálias' },
+            { src: 'assets/img/jogo/plant2.jpg', name: 'Lírios-de-um-dia' },
+            { src: 'assets/img/jogo/plant3.jpg', name: 'Vincas' },
+            { src: 'assets/img/jogo/plant4.jpg', name: 'Cóleus' },
+            { src: 'assets/img/jogo/plant5.jpg', name: 'Gerânios' },
+            { src: 'assets/img/jogo/plant6.jpg', name: 'Zínias' },
+            { src: 'assets/img/jogo/plant1.jpg', name: 'Dálias' },
+            { src: 'assets/img/jogo/plant2.jpg', name: 'Lírios-de-um-dia' },
+            { src: 'assets/img/jogo/plant3.jpg', name: 'Vincas' },
+            { src: 'assets/img/jogo/plant4.jpg', name: 'Cóleus' },
+            { src: 'assets/img/jogo/plant5.jpg', name: 'Gerânios' },
+            { src: 'assets/img/jogo/plant6.jpg', name: 'Zínias' }
+        ];
+
+        let firstCard = null;
+        let secondCard = null;
+        let lockBoard = false;
+
+        <!-- Função para embaralhar as cartas -->
+        function shuffle(array) {
+            array.sort(() => Math.random() - 0.5);
+        }
+
+        <!-- Função para criar o tabuleiro -->
+        function createBoard() {
+            const gameBoard = document.getElementById('game-board');
+            shuffle(images);
+            images.forEach((image, index) => {
+                const card = document.createElement('div');
+                card.classList.add('card', 'col-3');
+                card.dataset.image = image.src;
+                card.innerHTML = `<img src="${image.src}" alt="${image.name}"><p>${image.name}</p>`;
+                card.addEventListener('click', flipCard);
+                gameBoard.appendChild(card);
+            });
+        }
+
+        <!-- Função para virar as cartas -->
+        function flipCard() {
+            if (lockBoard) return;
+            if (this === firstCard) return;
+
+            this.classList.add('flipped');
+
+            if (!firstCard) {
+                firstCard = this;
+                return;
+            }
+
+            secondCard = this;
+            lockBoard = true;
+
+            checkForMatch();
+        }
+
+        <!-- Função para verificar se as cartas são iguais -->
+        function checkForMatch() {
+            const isMatch = firstCard.dataset.image === secondCard.dataset.image;
+            isMatch ? disableCards() : unflipCards();
+        }
+
+        <!-- Função para desabilitar as cartas -->
+        function disableCards() {
+            firstCard.removeEventListener('click', flipCard);
+            secondCard.removeEventListener('click', flipCard);
+            firstCard.classList.add('matched');
+            secondCard.classList.add('matched');
+            resetBoard();
+            checkForCompletion();
+        }
+
+        <!-- Função para desvirar as cartas -->
+        function unflipCards() {
+            setTimeout(() => {
+                firstCard.classList.remove('flipped');
+                secondCard.classList.remove('flipped');
+                resetBoard();
+            }, 1000);
+        }
+
+        <!-- Função para resetar o tabuleiro -->
+        function resetBoard() {
+            [firstCard, secondCard, lockBoard] = [null, null, false];
+        }
+
+        <!-- Função para verificar se o jogo foi completado -->
+        function checkForCompletion() {
+            const allCards = document.querySelectorAll('.card');
+            const matchedCards = document.querySelectorAll('.card.matched');
+            if (allCards.length === matchedCards.length) {
+                document.getElementById('congrats-message').style.display = 'block';
+            }
+        }
+
+        createBoard();
+    </script>
+</body>
+</html>
