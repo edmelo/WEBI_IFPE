@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import './App.css';
 
-const Contador = () => {
+const App = () => {
   const [contador, setContador] = useState(0);
 
   const incrementar = () => {
@@ -38,4 +39,4 @@ const styles = {
   },
 };
 
-export default Contador;
+export default App;
